@@ -49,7 +49,7 @@ namespace Facebook.WitAi
         {
             if (null != registeredMethods) return;
             registeredMethods = new DictionaryList<string, RegisteredMatchIntent>();
-            new Thread(RefreshAssemblies).Start();
+            // new Thread(RefreshAssemblies).Start();
         }
 
         internal static void RefreshAssemblies()
