@@ -19,7 +19,7 @@ namespace Facebook.WitAi.Data
     {
         #region Singleton
         private static AudioBuffer _instance;
-        private static bool _instanceInit = false;
+		private static bool _instanceInit = false;
         public static AudioBuffer Instance
         {
             get
@@ -56,7 +56,7 @@ namespace Facebook.WitAi.Data
         private void Awake()
         {
             _instance = this;
-            _instanceInit = true;
+			_instanceInit = true;
             // Check this gameobject & it's children for audio input
             _micInput = gameObject.GetComponentInChildren<IAudioInputSource>();
             // Check all roots for Mic Input JIC
@@ -102,6 +102,11 @@ namespace Facebook.WitAi.Data
 
             if (alwaysRecording) StopRecording(this);
         }
+		
+		private void OnDestroy()
+		{
+			if (_instance == this) _instanceInit = false;
+		}
 
         // Callback for mic sample ready
         private void OnMicSampleReady(int sampleCount, float[] sample, float levelMax)
